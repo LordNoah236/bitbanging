@@ -1,0 +1,67 @@
+extern sfr sbit AnotherBit ; // 0 veya 1 değişkeni alabilir . bir bit veri tutan değişken
+  // örneğin ;
+  //extern sfr sbit AnotherBit = 1 ; // 0 veya 1 değişkeni alabilir . bir bit veri tutan değişken
+
+char MyVar; // Myvar isimli char tipi degisken olusturulur
+  //örneğin ; 
+  //char x = 3 ; // 0b 0 0 0 0 0 0 1 1
+                       | | | | | | | |
+                  bit: 7 6 5 4 3 2 1 0 
+
+sbit AnotherBit at MyVar.B0; // degiskenin bit0 i AnotherBit olarak tanimlandi.
+  // örneğin ;
+  // sbit AnotherBit at x.B2; //degiskenin bit2 i AnotherBit olarak tanimlandi.
+  
+  // x = 7 ; // 0b 0 0 0 0 0 1 1 1
+                   | | | | | | | |
+              bit: 7 6 5 4 3 2 1 0 
+/*
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*
+                                                                                                                                *
+                                                                                                                                *
+                                                                                                                              *
+   x=?                                                                                                                          *
+   //char x = 3 ; // 0b 0 0 0 0 0 0 1 1                                                                                         *
+                        | | | | | | | |                                                                                         *
+                   bit: 7 6 5 4 3 2 1 0                                                                                         *
+   x =                                ------                                                                                    * 
+         x = 7 ; // 0b 0  0  0  0  0  |'1' |  1   1                                                                             *
+                       |  |  |  |  |  | |  |  |   |                                                                             *
+                  bit: 7  6  5  4  3  | 2  |  1   0                                                                             *
+                                      ------                                                                                    *
+   x = 7 olur çünkü ilk halinde 2. bit 0 iken 1 yapıldı öncesi x=0b00000011 / dec=3... sonrası x=0b00000111 / dec= 7 oluyor..   *
+   // sbit AnotherBit at x.B2; //degiskenin bit2 i AnotherBit olarak tanimlandi.                                                *
+********************************************************************************************************************************* 
+önemli not ;                                                                                                                    *
+extern sfr sbit Bit_Value ; // 0 veya 1 değişkeni alabilir . bir bit veri tutan değişken                                        *
+char variable_name ;                                                                                                            *
+ variable_name.B0 // Değişkenin 0. bit ' ini  ifade eder                                                                        *
+ variable_name.B1 // Değişkenin 1. bit ' ini  ifade eder                                                                        *
+ variable_name.B2 // Değişkenin 2. bit ' ini  ifade eder                                                                        *
+ variable_name.B3 // Değişkenin 3. bit ' ini  ifade eder                                                                        *
+ variable_name.B4 // Değişkenin 4. bit ' ini  ifade eder                                                                        *
+ variable_name.B5 // Değişkenin 5. bit ' ini  ifade eder                                                                        *
+ variable_name.B6 // Değişkenin 6. bit ' ini  ifade eder                                                                        *
+ variable_name.B7 // Değişkenin 7. bit ' ini  ifade eder                                                                        *
+sbit Bit_Value at variable_name.B0; // degiskenin bit0 i Bit_Value değeri olarak tanimlandi.                                    *
+*********************************************************************************************************************************
+                                                                                                                                *
+1- MikroC ile bit değişken tipi ile bir bitlik değişkenler kullanılabilir.                                                      *
+2- bit bf; // bf bit tipi değişken atanır, hafizada belirli bir adresi yoktur.                                                  *
+3- bit *ptr; // bu nedenle pointer atamasida yapilamaz:                                                                         *
+4- bit arr [5]; // bit tipi dizi atmasi yapilamaz.                                                                              *
+                                                                                                                                *
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*
+
+void bitWrite(char *x, char n, char value) {
+   if (value)
+      *x |= (1 << n);
+   else
+      *x &= ~(1 << n);
+}
+
+char bitRead(char *x, char n) {
+   return (*x & (1 << n)) ? 1 : 0;
+} 
+
+*/
